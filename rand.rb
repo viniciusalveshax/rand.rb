@@ -8,6 +8,7 @@ def process_input(cmd_args)
                 options[:quiet] = true
             when "-r"
                 options[:range] = true
+            #TODO Add option do show a inline help
             else
                 normal_args.push(arg)
        end

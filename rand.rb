@@ -1,4 +1,7 @@
-require 'readline'
+#!/usr/bin/ruby
+
+#Variable to debug code
+DEBUG=false
 
 # process_input is modified from process_argv https://www.rubyguides.com/2018/12/ruby-argv/
 def process_input(cmd_args)
@@ -40,7 +43,7 @@ if options[:file]
 	filename = normal_args[0]
 	lines = IO.readlines(filename)
 	lines_count = lines.size
-	puts "Length " + lines_count.to_s
+	#puts "Length " + lines_count.to_s
 	normal_args = Range.new(1, lines_count).to_a
 	if lines_count > 1_000_000
 		#Will eat to much memory
@@ -58,15 +61,25 @@ if options[:pipe]
 		lines.push(line)
 		lines_count+=1
 	end
+
 	normal_args = Range.new(1, lines_count).to_a
+
+	if DEBUG
+		puts "lines count " + lines_count.to_s
+		puts "normal: " + normal_args.to_s
+	end
 end
 
 #Choose a rand item
 chosen = normal_args[rand(normal_args.size)]
 
+if DEBUG
+	puts "chosen " + chosen.to_s
+end
+
 if options[:file] or options[:pipe]
 	# https://stackoverflow.com/questions/4014352/how-to-get-a-particular-line-from-a-file	
-	chosen = lines[chosen]
+	chosen = lines[chosen-1]
 end
 
 if options[:quiet]

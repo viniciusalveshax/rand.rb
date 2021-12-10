@@ -52,6 +52,8 @@ end
 if options[:pipe]
 	lines = []
 	lines_count = 0
+	#Made with a little help from this link
+	#https://zetcode.com/lang/rubytutorial/io/	
 	while line = $stdin.gets
 		lines.push(line)
 		lines_count+=1
